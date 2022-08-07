@@ -31,7 +31,7 @@ button.addEventListener('click', async (e) => {
             actual = userInput;
             data = await fetchData(`${url}/slug:${userInput}/scores/`)
 
-            if (data['status'] == 404) {
+            if (data['status'] == 404 || data == undefined || data == null || data == {}) {
                 throw 'Not found.'
             }
             
