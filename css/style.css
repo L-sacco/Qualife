@@ -149,6 +149,8 @@ html body .main-container .search .search-container {
 }
 
 html body .main-container .search .search-container__button {
+  position: relative;
+  left: -1.5rem;
   color: #3e8aa7;
   width: 6em;
   height: 44px;
@@ -188,6 +190,8 @@ html body .main-container .search .search-container__input {
   padding: 1.25rem;
   color: #3e8aa7;
   border-radius: 8px 8px 0 0;
+  -webkit-box-shadow: 0 3px 5px rgba(62, 138, 167, 0.9);
+          box-shadow: 0 3px 5px rgba(62, 138, 167, 0.9);
 }
 
 html body .main-container .search .search-container__input:hover {

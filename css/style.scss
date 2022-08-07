@@ -109,6 +109,8 @@ html {
                     align-items: center;
 
                     &__button {
+                        position: relative;
+                        left: -1.5rem;
                         color: #3e8aa7;
                         width: 6em;
                         height: 44px;
@@ -142,6 +144,7 @@ html {
                         padding: 1.25rem;
                         color: #3e8aa7;
                         border-radius: 8px 8px 0 0;
+                        box-shadow: 0 3px 5px $darkGreenBlue;
         
                         &:hover {
                             border-color: #85b3ce;
