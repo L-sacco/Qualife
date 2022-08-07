@@ -1,3 +1,3 @@
-const button = document.querySelector('#search-container-button')
-const input = document.querySelector("#search-container-input")
+const button = document.querySelector('#search-button')
+const input = document.querySelector("#search-input")
 const loading = document.querySelector('.loading')

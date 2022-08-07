@@ -1,4 +1,4 @@
-let _label = document.querySelector(".search-container__label")
+let _label = document.querySelector(".search__label")
 
 input.addEventListener('focus', () => {
     _label.classList.add("label-up")
