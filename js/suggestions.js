@@ -30,4 +30,5 @@ function selectedName(city) {
     let list = document.querySelector('.list')
     input.value = city
     list.innerHTML = ''
+    button.focus()
 }
