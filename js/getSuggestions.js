@@ -1,9 +1,13 @@
-input.addEventListener('input', async (e) => {
+import { fetchData } from "./fetchData.js"
+
+export async function getSuggestions() {
+    let input = document.querySelector("#search-input")
     let list = document.querySelector('.list')
     let data = new Object,
         url = 'https://api.teleport.org/api/urban_areas'
 
-    let raw = cities = new Array
+    let raw = new Array
+    let cities = new Array
 
     list.innerHTML = ''
 
@@ -24,11 +28,4 @@ input.addEventListener('input', async (e) => {
         }
     })
     if (!list.hasChildNodes() && input.value != '') list.innerHTML = 'Not found'
-})
-
-function selectedName(city) {
-    let list = document.querySelector('.list')
-    input.value = city
-    list.innerHTML = ''
-    button.focus()
 }

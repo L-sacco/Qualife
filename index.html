@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="main-container">
-        <div class="logo"><img src="./img/logo_transparent.png" alt=""></div>
+        <div class="logo"><a href="#" onclick="location.reload()"><img src="./img/logo_transparent.png" alt=""></a></div>
         <div class="search">
             <input type="text" id="search-input" class="search__input" autocomplete="off">
             <label class="search__label" for="search__input">City</label>
@@ -28,12 +28,19 @@
     </div>
     <footer>
         <p>© 2022 Luigi Sacco.</p>
-       <p>Background photo by <a href="https://unsplash.com/@sickle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sergey Pesterev</a></p>
+        <p>Background photo by <a href="https://unsplash.com/@sickle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sergey Pesterev</a></p>
     </footer>
-    <script src="./js/globalVar.js"></script>
-    <script src="./js/script.js"></script>
-    <script src="./js/fetchData.js"></script>
-    <script src="./js/suggestions.js"></script>
-    <script src="./js/onSubmit.js"></script>
+    <script type="module" src="./js/script.js"></script>
+    <script>
+        function selectedName(city) {
+            let input = document.querySelector("#search-input")
+            let button = document.querySelector('#search-button')
+            let list = document.querySelector('.list')
+            
+            input.value = city
+            list.innerHTML = ''
+            button.focus()
+        }
+    </script>
 </body>
 </html>
