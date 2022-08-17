@@ -1,9 +1,0 @@
-<html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" href="/img/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="./css/style.css"><title>Qualife - Quality of life calculator</title><script defer="defer" src="main.cc3035e9fc6611c81b37.js"></script></head><body><div class="main-container"><div class="logo"><a href="#" onclick="location.reload()"><img id="logo" src="" alt=""></a></div><div class="search"><input id="search-input" class="search__input" autocomplete="off"> <label class="search__label" for="search__input">City</label> <button id="search-button" class="search__button">Search</button></div><ul class="list"></ul><div class="error"></div><div class="loading hidden"></div><div id="data-container" class="data-container hidden"><div class="meters"></div><div class="description"></div></div></div><footer><p>© 2022 Luigi Sacco.</p><p>Background photo by <a href="https://unsplash.com/@sickle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sergey Pesterev</a></p></footer><script>function selectedName(city) {
-            let input = document.querySelector("#search-input")
-            let button = document.querySelector('#search-button')
-            let list = document.querySelector('.list')
-            
-            input.value = city
-            list.innerHTML = ''
-            button.focus()
-        }</script></body></html>
