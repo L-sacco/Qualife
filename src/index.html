@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="/img/favicon.png">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;500&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="main-container">
-        <div class="logo"><a href="#" onclick="location.reload()"><img src="./img/logo_transparent.png" alt=""></a></div>
+        <div class="logo"><a href="#" onclick="location.reload()"><img id="logo" src="" alt=""></a></div>
         <div class="search">
             <input type="text" id="search-input" class="search__input" autocomplete="off">
             <label class="search__label" for="search__input">City</label>
@@ -30,7 +30,6 @@
         <p>© 2022 Luigi Sacco.</p>
         <p>Background photo by <a href="https://unsplash.com/@sickle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sergey Pesterev</a></p>
     </footer>
-    <script type="module" src="./js/script.js"></script>
     <script>
         function selectedName(city) {
             let input = document.querySelector("#search-input")
