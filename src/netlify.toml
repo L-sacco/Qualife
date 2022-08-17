@@ -1,4 +1,4 @@
 [build]
-    base = "dist"
+    base = "/"
     command = "npm run build:prod"
-    publish = "dist/Quilife-app"
+    publish = "/Quilife-app"
