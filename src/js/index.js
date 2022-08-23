@@ -119,7 +119,6 @@ async function onSubmit() {
 
             cityHref = Object.values(data._links['ua:item']).filter(e => e.name == rawUserInput)[0].href
             cityData = await fetchData(cityHref)
-            console.log(cityData)
             cityScores = await fetchData(`${cityHref}scores`) 
 
             dataContainer.classList.remove("hidden")
