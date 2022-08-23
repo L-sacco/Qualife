@@ -12,6 +12,7 @@ const logoImg = document.querySelector("#logo")
 const faviconElem = document.querySelector("link[rel~='icon']");
 const list = document.querySelector('.list')
 const url = 'https://api.teleport.org/api/urban_areas'
+let data = {}
 
 faviconElem.href = favicon
 logoImg.src = logo
@@ -66,10 +67,8 @@ async function fetchData(url) {
 async function getSuggestions() {
     
     let cities = []
-    let data = {}
 
     list.innerHTML = ''
-
     data = await fetchData(url)
     cities = Object.values(data._links['ua:item']).map(e => e.name)
     cities.map(city => {
@@ -89,17 +88,16 @@ async function onSubmit() {
 
     const dataContainer = document.querySelector('#data-container')
     const meters = document.querySelector('.meters')
+    const info = document.querySelector('.info')
     const description = document.querySelector('.description')
     const errorDiv = document.querySelector('.error')
-    const categ = []
-    let data = {}
 
     let actual = '',
-        userInput = input.value.toLowerCase().replace(/ /g, '-')
+    /*  userInput = input.value.toLowerCase().replace(/ /g, '-').replace(/,/g, '') */
+        rawUserInput = input.value;
         
-
     // Don't do anything if the user is searching the same city twice 
-    if (actual == userInput) {
+    if (actual == rawUserInput) {
         return;
     }
 
@@ -113,28 +111,46 @@ async function onSubmit() {
 
     try {
         if (input.value != "") {
-            actual = userInput;
-            data = await fetchData(`${url}/slug:${userInput}/scores/`)
+            let cityHref = '',
+                cityScores = '',
+                cityData = ''
 
-            if (data['status'] == 404 || data == undefined || data == null || data == {}) {
-                throw 'Not found.'
-            }
-            
-            categ.push(Object.entries(data.categories))
+            actual = rawUserInput
+
+            cityHref = Object.values(data._links['ua:item']).filter(e => e.name == rawUserInput)[0].href
+            cityData = await fetchData(cityHref)
+            console.log(cityData)
+            cityScores = await fetchData(`${cityHref}scores`) 
 
             dataContainer.classList.remove("hidden")
             dataContainer.classList.add("visible")
 
-            categ[0].map(element => {
+            cityScores.categories.map(element => {
                 meters.innerHTML +=
-                    `<p>${element[1].name}: ${element[1].score_out_of_10.toPrecision(2)} / 10</p>
+                    `<p>${element.name}: ${element.score_out_of_10.toPrecision(2)} / 10</p>
                     <div class="outer-meter">
-                        <div class="inner-meter" style="width:${(element[1].score_out_of_10.toPrecision(2))*10}%;""></div>
+                        <div class="inner-meter" style="width:${(element.score_out_of_10.toPrecision(2))*10}%;""></div>
                     </div>`
             });
-            description.innerHTML = data.summary
+            description.innerHTML = cityScores.summary
+
+            info.innerHTML = `
+            <p><strong>Full name</strong>: ${cityData.full_name}</p>
+            <p><strong>Continent</strong>: ${cityData.continent}</p>
+            `
+            if (cityData.mayor && cityData.mayor != undefined) {
+                info.innerHTML += `<p><strong>Mayor</strong>: ${cityData.mayor}</p>`
+            }
+            info.innerHTML += `
+            <p style="text-align: center;"><strong>Coordinates</strong>:<br></p>
+            <p><strong>North</strong>: ${cityData.bounding_box.latlon.north}</p>
+            <p><strong>South</strong>: ${cityData.bounding_box.latlon.south}</p>
+            <p><strong>East</strong>: ${cityData.bounding_box.latlon.east}</p>
+            <p><strong>West</strong>: ${cityData.bounding_box.latlon.west}</p>
+            `
         }
     } catch (e) {
-        errorDiv.innerHTML = e
+        errorDiv.innerHTML = "Not found"
+        console.log(e)
     }
 }
